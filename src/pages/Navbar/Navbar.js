@@ -35,14 +35,14 @@ const Navbar = () => {
                     {menuItems}
                 </ul>
             </div>
-            {users === 'null' ?
-                <div className="navbar-end">
-                    <button className='btn'><Link to='/login'>LogIn</Link></button>
-                </div>
-                :
-                <div className="navbar-end">
-                    <button onClick={handleLogOut} className='btn'>Log Out</button>
-                </div>
+            {
+
+                users ?
+                    <></>
+                    :
+                    <div className="navbar-end">
+                        <button onClick={handleLogOut} className='btn'>Log Out</button>
+                    </div>
             }
         </div>
     );

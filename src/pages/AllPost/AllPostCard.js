@@ -107,7 +107,7 @@ const AllPostCard = ({ data }) => {
 
 
                 <div className="card text-bg-light mb-3 mt-4" >
-                    <div className="card-header">Comments {likes}</div>
+                    <div className="card-header">Comments {filtereComment.length}</div>
 
                     {
                         filtereComment.map(dt => <div className="card mb-2 bg-orange-100">
