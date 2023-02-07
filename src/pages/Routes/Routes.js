@@ -41,10 +41,7 @@ const router = createBrowserRouter([
                 path: '/update',
                 element: <Update></Update>
             },
-            {
-                path: '/login',
-                element: <Login></Login>
-            },
+
         ]
     }
 

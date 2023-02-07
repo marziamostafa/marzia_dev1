@@ -11,7 +11,7 @@ const AddPost = () => {
         localStorage.getItem('userData')
     )
     const user = JSON.parse(users)
-    console.log(user)
+    // console.log(user)
     const navigate = useNavigate()
     const handleAddItem = (data, event) => {
 
