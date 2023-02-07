@@ -1,0 +1,12 @@
+.mediaCard {
+    justify-items: center;
+}
+
+button {
+    justify-items: end;
+}
+
+.all-text {
+    text-align: center;
+
+}

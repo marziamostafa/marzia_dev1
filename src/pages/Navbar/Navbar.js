@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
 
     const menuItems = <React.Fragment>
-        <li className='px-4 pt-2'><Link to="/home">All Post</Link></li>
+        <li className='px-4 pt-2'><Link to="/allpost">All Post</Link></li>
         <li className='px-4 pt-2'><Link to="/addpost">Add post</Link></li>
     </React.Fragment>
+
+    const [users, setUsers] = useState(
+        localStorage.getItem('userData')
+    )
+
+    const handleLogOut = () => {
+        localStorage.removeItem('userData');
+        window.location.reload()
+    }
 
     return (
         <div className="navbar bg-base-100">
@@ -19,16 +28,22 @@ const Navbar = () => {
                         {menuItems}
                     </ul>
                 </div>
-                <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+                <a href='/#' className="btn btn-ghost normal-case text-xl">daisyUI</a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
                     {menuItems}
                 </ul>
             </div>
-            <div className="navbar-end">
-                <a className="btn">Get started</a>
-            </div>
+            {users === 'null' ?
+                <div className="navbar-end">
+                    <button className='btn'><Link to='/login'>LogIn</Link></button>
+                </div>
+                :
+                <div className="navbar-end">
+                    <button onClick={handleLogOut} className='btn'>Log Out</button>
+                </div>
+            }
         </div>
     );
 };

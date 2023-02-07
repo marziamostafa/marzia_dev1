@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import './AddPost.css'
 
 const AddPost = () => {
@@ -9,8 +10,13 @@ const AddPost = () => {
     const [users, setUsers] = useState(
         localStorage.getItem('userData')
     )
-    const handleAddItem = (data) => {
+    const user = JSON.parse(users)
+    console.log(user)
+    const navigate = useNavigate()
+    const handleAddItem = (data, event) => {
+
         alert('This may take some time. Please wait')
+        const form = event.target;
         const image = data.image[0];
         const fromData = new FormData();
         fromData.append('image', image);
@@ -34,11 +40,12 @@ const AddPost = () => {
                         postTime: data.postTime,
 
                         details: data.details,
-                        email: users?.email,
-                        link: data.taskLink
+                        email: user?.email,
+
 
                     }
-                    fetch('https://social-site-server-marziamostafa.vercel.app/allmedia', {
+
+                    fetch(' https://reg-login-server.vercel.app/allmedia', {
 
                         method: 'POST',
                         headers: {
@@ -52,8 +59,8 @@ const AddPost = () => {
 
                             console.log(result)
                             alert('Posted successfully')
-                            window.location.reload()
-                            // navigate('/dashboard/myaddedproducts')
+                            form.reset()
+                            navigate('/')
                         })
 
                 }
@@ -78,30 +85,15 @@ const AddPost = () => {
 
                     <div className="form-control max-w-screen-md my-3">
                         <label className="label"> <span className="label-text">Details: </span></label>
-                        <input type="text" {...register("taskName", {
+                        <input type="text" {...register("details", {
                             required: "Required"
                         })} className="input input-bordered w-full " />
-                        {errors.taskName && <p className='text-red-500'>{errors.taskName.message}</p>}
-                    </div>
-
-
-                    {/* <div className="form-control max-w-screen-md my-3">
-                        <label className="label"> <span className="label-text">Details </span></label>
-                        <br />
-                        <textarea type="text" {...register("details", {
-                            required: "Required"
-                        })} className="input input-bordered w-full textarea" />
                         {errors.details && <p className='text-red-500'>{errors.details.message}</p>}
-                    </div> */}
-
-                    <div className="form-control max-w-screen-md my-3">
-                        <label className="label"> <span className="label-text">Used Tools </span></label>
-                        <br />
-                        <textarea type="text" {...register("usedTools", {
-                            required: "Required"
-                        })} className="input input-bordered w-full textarea" />
-                        {errors.usedTools && <p className='text-red-500'>{errors.usedTools.message}</p>}
                     </div>
+
+
+
+
 
 
                     <div className="form-control  max-w-screen-md my-3">
@@ -112,13 +104,7 @@ const AddPost = () => {
                         {errors.postTime && <p className='text-red-500'>{errors.postTime.message}</p>}
                     </div>
 
-                    <div className="form-control  max-w-screen-md my-3">
-                        <label className="label"> <span className="label-text">Task Link</span></label>
-                        <input type="text" {...register("taskLink", {
 
-                        })} className="input input-bordered w-full " />
-                        {errors.taskLink && <p className='text-red-500'>{errors.taskLink.message}</p>}
-                    </div>
 
 
                     <div className="form-control  max-w-screen-md">

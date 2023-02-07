@@ -33,7 +33,7 @@ const Update = () => {
         if (array[0].email === data.email && array[0].name === data.username) {
             console.log(data.email)
 
-            fetch(`https://reg-login-server.vercel.app/updates/${data.email}`, {
+            fetch(` https://reg-login-server.vercel.app/updates/${data.email}`, {
 
                 method: 'PUT',
                 headers: {
@@ -62,7 +62,7 @@ const Update = () => {
 
     }
     return (
-        <div className='h-[800px] flex justify-center items-center'>
+        <div className='h-96 flex justify-center items-center'>
             <div className='w-96 p-7'>
                 <h2 className='text-xl text-center'>Update User info</h2>
                 <form onSubmit={handleSubmit(handleUpdate)}>

@@ -15,14 +15,11 @@ const Login = () => {
 
     const [allInfo, setAllInfo] = useState([])
     useEffect(() => {
-        fetch(` https://reg-login-server.vercel.app/allusers`)
+        fetch(`  https://reg-login-server.vercel.app/allusers`)
             .then(res => res.json())
             .then(data => setAllInfo(data))
 
     }, [])
-
-
-    console.log(users)
 
 
 
@@ -37,7 +34,7 @@ const Login = () => {
             alert("logged in")
 
             form.reset()
-            navigate('/home')
+            navigate('/')
             localStorage.setItem('userData', JSON.stringify(array[0]));
 
         }
@@ -49,7 +46,7 @@ const Login = () => {
 
 
     return (
-        <div className='h-[800px] flex justify-center items-center'>
+        <div className='h-96 flex justify-center items-center'>
             <div className='w-96 p-7'>
                 <h2 className='text-xl text-center'>Login</h2>
                 <form onSubmit={handleSubmit(handleLogin)}>
