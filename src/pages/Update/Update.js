@@ -33,14 +33,14 @@ const Update = () => {
         if (array[0].email === data.email && array[0].name === data.username) {
             console.log(data.email)
 
-            fetch(` https://reg-login-server.vercel.app/allusers/${data.email}`, {
+            fetch(`https://reg-login-server.vercel.app/updates/${data.email}`, {
 
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'
 
                 },
-                body: JSON.stringify(review)
+                body: JSON.stringify(item)
             })
                 .then(res => res.json())
                 .then(result => {

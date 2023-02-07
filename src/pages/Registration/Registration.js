@@ -9,7 +9,7 @@ const Registration = () => {
 
 
     const handleSignUp = (data) => {
-
+        alert('This may take some time. Please wait')
         const item = {
             name: data.name,
             email: data.email,
@@ -18,7 +18,7 @@ const Registration = () => {
         }
         console.log(item)
 
-        fetch(' https://reg-login-server.vercel.app', {
+        fetch(' https://reg-login-server.vercel.app/allusers', {
 
             method: 'POST',
             headers: {
@@ -33,8 +33,8 @@ const Registration = () => {
             .then(result => {
 
                 console.log(result)
-                alert('This may take some time. Please wait')
-                alert('User successfully')
+
+                alert('User created successfully')
                 window.location.reload()
                 // navigate('/dashboard/myaddedproducts')
             })

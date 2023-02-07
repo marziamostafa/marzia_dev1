@@ -1,16 +1,14 @@
-import React, { createContext } from 'react';
+import React, { createContext, useState } from 'react';
 import { getAuth } from 'firebase/'
 
 
-// export const AuthContext = createContext()
-// const auth = getAuth(app)
-// const provider = new GoogleAuthProvider();
+export const AuthContext = createContext()
+
 
 const AuthProvider = () => {
+    const [user, setUser] = useState(null)
     return (
-        <div>
-
-        </div>
+        <AuthContext.Provider></AuthContext.Provider>
     );
 };
 

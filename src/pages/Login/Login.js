@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
 
 const Login = () => {
-    // const { signIn, googleLogin, updateUser } = useContext(AuthContext);
+
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [loginError, setLoginError] = useState('');
 
+    const [users, setUsers] = useState(
+        localStorage.getItem('userData')
+    )
+    const navigate = useNavigate()
 
     const [allInfo, setAllInfo] = useState([])
     useEffect(() => {
@@ -15,19 +20,26 @@ const Login = () => {
             .then(data => setAllInfo(data))
 
     }, [])
-    // console.log(allInfo)
 
 
-    const handleLogin = data => {
-        // console.log(data)
+    console.log(users)
 
+
+
+    const handleLogin = (data, event) => {
+        const form = event.target;
+        console.log(data)
         const array = allInfo.filter(info => info.name === data.username)
-        // console.log(array)
 
+        console.log(array)
 
         if (array[0].password === data.password) {
             alert("logged in")
-            window.location.reload()
+
+            form.reset()
+            navigate('/home')
+            localStorage.setItem('userData', JSON.stringify(array[0]));
+
         }
         else {
             alert("wrong password")
